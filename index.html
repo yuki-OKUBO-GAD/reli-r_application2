@@ -1,7 +1,33 @@
 <!DOCTYPE html>
-<html>
-<head><title>部活のホームページ</title></head>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSVファイル読み込み</title>
+</head>
 <body>
-    こんちには。これは準備中のホームページです。準備完了までお待ちください。
+  <h1>CSVファイル読み込み</h1>
+  <label for="csvFileInput">CSVファイルを選択:</label>
+  <input type="file" id="csvFileInput" accept=".csv">
+  <button onclick="handleFile()">ファイル読み込み</button>
+
+  <script>
+    function handleFile() {
+      const fileInput = document.getElementById('csvFileInput');
+      const file = fileInput.files[0];
+      
+      if (file) {
+        const reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function(e) {
+          const csv = e.target.result;
+          // ここでCSVファイルの内容を処理するためのコードを書く
+          console.log(csv); // 例としてコンソールにCSV内容を表示
+        }
+      } else {
+        alert('ファイルを選択してください。');
+      }
+    }
+  </script>
 </body>
 </html>
